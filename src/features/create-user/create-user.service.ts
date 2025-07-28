@@ -21,6 +21,6 @@ export class CreateUsersService {
         console.log(user,"this is going to save")
 
 
-        return await this.usersRepository.createUser(user);
+        return await this.usersRepository.saveUser(user);
     }
 }

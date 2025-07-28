@@ -1,8 +1,6 @@
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { UserRole } from "./enums/user-role";
 
-
-
 @Entity('users')
 export class UsersEntity {
     @PrimaryGeneratedColumn()

@@ -10,20 +10,19 @@ export class UsersRepository extends Repository<UsersEntity> {
         super(UsersEntity, dataSource.createEntityManager());
     }
 
-    async createUser(data: CreateUserDto) {
+    async saveUser(data: CreateUserDto) {
         return await this.save(data);
     }
 
-    async findAll() {
-        return await this.find()
+    async search(criteria, options) {
+        return await this.findAndCount({
+            where: criteria,
+            ...options
+        })
     }
 
-    async findByEmail(email: string) {
-        return await this.find({ where: { email: email } })
-    }
-
-    async findById(id: number) {
-        return await this.find({ where: { id: id } })
+    async findByUuid(uuid:string) {
+        return await this.findOne({where:{uuid:uuid}})
     }
 
 
