@@ -9,7 +9,6 @@ export class ListUsersController {
 
     @Get()
     async listUser(@Query() query: ListUserDto) {
-      console.log("this is dto :",query)
     return await this.handler.handle(query);
   }
 

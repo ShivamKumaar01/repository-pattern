@@ -13,7 +13,6 @@ export class ListUsersHandler {
     ) { }
 
     async handle(query: ListUserDto) {
-        console.log("dto from service:",query)
         const { role, page, limit } = query;
 
         const where: any = {};
