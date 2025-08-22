@@ -1,15 +1,16 @@
-import { Body, Controller, Post } from "@nestjs/common";
-import { ListUsersService } from "./list-user.service";
+import { Body, Controller, Get, Query } from "@nestjs/common";
+import { ListUsersHandler } from "./list-user.service";
 import { ListUserDto } from "./dto/list-user.dto";
 
-@Controller('list-user')
+@Controller('users')
 export class ListUsersController {
 
-    constructor(private readonly usersService: ListUsersService) { }
+    constructor(private readonly handler: ListUsersHandler) { }
 
-    @Post('/')
-    async listUser(@Body() dto: ListUserDto) {
-    return await this.usersService.listUser(dto);
+    @Get()
+    async listUser(@Query() query: ListUserDto) {
+      console.log("this is dto :",query)
+    return await this.handler.handle(query);
   }
 
     

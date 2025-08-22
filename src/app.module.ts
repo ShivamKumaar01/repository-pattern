@@ -5,6 +5,7 @@ import { CreateUserModule } from './features/create-user/create-user.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { dataSourceOptions } from 'ormconfig';
+import { ListUserModule } from './features/list-user/list-user.module';
 
 
 @Module({
@@ -16,7 +17,8 @@ import { dataSourceOptions } from 'ormconfig';
       useFactory: async (configService: ConfigService) => dataSourceOptions(configService),
       inject: [ConfigService],
     }),
-    CreateUserModule
+    CreateUserModule,
+    ListUserModule
   ],
   controllers: [AppController],
   providers: [AppService],

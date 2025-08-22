@@ -2,7 +2,7 @@ import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryG
 import { UserRole } from "./enums/user-role";
 
 @Entity('users')
-export class UsersEntity {
+export class Users {
     @PrimaryGeneratedColumn()
     id: number
 

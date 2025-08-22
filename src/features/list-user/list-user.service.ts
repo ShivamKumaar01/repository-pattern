@@ -1,26 +1,27 @@
 import { Injectable } from "@nestjs/common";
 import { UsersRepository } from "src/infrastructure/repositories/user/user.repository";
-import { UsersEntity } from "src/domain/users/user.entity";
+import { Users } from "src/domain/users/user.entity";
 import * as bcrypt from 'bcrypt';
 import { CreateUserDto } from "../create-user/dto/create-user.dto";
 import { ListUserDto } from "./dto/list-user.dto";
 
 @Injectable()
-export class ListUsersService {
+export class ListUsersHandler {
 
     constructor(
-        private usersRepository: UsersRepository,
+        private repository: UsersRepository,
     ) { }
 
-    async listUser(dto: ListUserDto) {
-        const { role, page, limit } = dto;
+    async handle(query: ListUserDto) {
+        console.log("dto from service:",query)
+        const { role, page, limit } = query;
 
         const where: any = {};
         if (role) {
             where.role = role;
         }
 
-        const [data, total] = await this.usersRepository.search(
+        const [data, total] = await this.repository.search(
             where,
             {
                 skip: (page - 1) * limit,

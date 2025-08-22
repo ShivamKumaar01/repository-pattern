@@ -1,13 +1,13 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { UsersEntity } from "src/domain/users/user.entity";
+import { Users } from "src/domain/users/user.entity";
 import { CreateUserDto } from "src/features/create-user/dto/create-user.dto";
 import { DataSource, Repository } from "typeorm";
 
 @Injectable()
-export class UsersRepository extends Repository<UsersEntity> {
+export class UsersRepository extends Repository<Users> {
 
     constructor(private dataSource: DataSource) {
-        super(UsersEntity, dataSource.createEntityManager());
+        super(Users, dataSource.createEntityManager());
     }
 
     async saveUser(data: CreateUserDto) {
@@ -21,9 +21,7 @@ export class UsersRepository extends Repository<UsersEntity> {
         })
     }
 
-    async findByUuid(uuid:string) {
-        return await this.findOne({where:{uuid:uuid}})
-    }
+  
 
 
 }
